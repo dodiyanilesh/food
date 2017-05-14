@@ -40,36 +40,36 @@ $(document).ready(function(){
     fatch_food_data();
 
      $("#singal-search-box").keyup(function(){
-        var itemName = $("#singal-search-box").val();
-
-            if(itemName.length > 1){
+         $('.singal-foods-dropdown-menu-main ul').html('');
+        var itemName_pop = $("#singal-search-box").val();
+            if(itemName_pop.length > 1){
                 $.ajax({
                     type: "GET",
-                    url: "https://api.nutritionix.com/v1_1/search/"+itemName+"?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=0e3feb06&appKey=048f0574236e894edb237e0ef193d62d",
+                    url: "https://api.nutritionix.com/v1_1/search/"+itemName_pop+"?fields=item_name%2Citem_id%2Cnf_serving_size_qty%2Cnf_serving_size_unit%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=0e3feb06&appKey=048f0574236e894edb237e0ef193d62d",
                      dataType: "json",
                     beforeSend: function(){
                         $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
                     },
                     success: function(data){
-                        var foodData = data.hits;
-                        var item;
+                        var foodData_pop = data.hits;
+                        var item_pop;
                         $('.foods-dropdown-menu-main ul').html('');
-                        $.each(foodData, function(key, value){
-                              var itemData = value.fields;
-                              item = '<li class="singal_food" data-item_id="'+itemData.item_id+'"><div class="ui-select-choices-row ng-scope active" id="ui-select-choices-row-0-0">'+
+                        $.each(foodData_pop, function(key, value){
+                              var itemData_pop = value.fields;
+                              item_pop = '<li class="singal_food" data-item_id="'+itemData_pop.item_id+'"><div class="ui-select-choices-row ng-scope active" id="ui-select-choices-row-0-0">'+
                                         '<a href="javascript:void(0);" class="ui-select-choices-row-inner" uis-transclude-append="" >'+
                                             '<div class="list-group-item ng-scope">'+
-                                              '<span class="badge badge-calorie ng-binding">'+itemData.nf_calories+'<span class="block text-center grey note">cal</span></span>'+
+                                              '<span class="badge badge-calorie ng-binding">'+itemData_pop.nf_calories+'<span class="block text-center grey note">cal</span></span>'+
                                               '<div class="food-image-wrap">'+
                                                 '<img class="food-image" ng-src="https://d2xdmhkmkbyw75.cloudfront.net/304_thumb.jpg" alt="Tea" src="https://d2xdmhkmkbyw75.cloudfront.net/304_thumb.jpg" style="max-height: 35px;max-width: 35px;">'+
                                               '</div>'+
-                                              '<span class="te ng-binding">'+itemData.item_name+'</span>'+
-                                              '<span class="item-serving ng-binding" style="">'+itemData.nf_total_fat+' fl oz</span>'+
+                                              '<span class="te ng-binding">'+itemData_pop.brand_name+' '+itemData_pop.item_name+'</span>'+
+                                              '<span class="item-serving ng-binding" style="">'+itemData_pop.nf_serving_size_qty+' '+itemData_pop.nf_serving_size_unit+'</span>'+
                                             '</div>'+
                                         '</a>'+
                                     '</div>'+
                                     '</li>';
-                              $('.singal-foods-dropdown-menu-main ul').append(item);
+                            $('.singal-foods-dropdown-menu-main ul').append(item_pop);
                         });
                              
                     }

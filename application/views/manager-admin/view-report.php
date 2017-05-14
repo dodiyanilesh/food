@@ -320,7 +320,7 @@ if($remain_satufat > 0)
 <!-- ============================================================== -->
 <div id="page-wrapper">
     <div class="container-fluid">
-        <div class="row" id="capture_image" style="padding:50px 0;">
+        <div class="row" id="capture_image" style="padding:50px 0; background:#edf1f5;">
             <div class="top-bar-gebe" style="display:inline-block; width:100%; margin-bottom:20px;">
                 <div class="col-sm-6">
                     <img src="<?php echo base_url('theme/images/logo.png'); ?>" width="300" />
@@ -335,6 +335,7 @@ if($remain_satufat > 0)
             <div class="clearfix">
             <div class="col-md-4">
               <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                <h1>Calories Breakdown by Meal</h1>
             </div>
             <div class="col-md-4">
               <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
@@ -343,7 +344,7 @@ if($remain_satufat > 0)
               <div id="chartContainer3" style="height: 300px; width: 100%;"></div>
             </div>
             <div class="clearfix"></div>
-            <div class="Instruction">
+            <!-- <div class="Instruction">
                 <div class="col-sm-2">
                     <div class="blue-box-in"><div class="stocked1"></div> <label>PROTIEN</label></div>
                 </div>
@@ -354,20 +355,20 @@ if($remain_satufat > 0)
                     <div class="blue-box-in"><div class="stocked3"></div> <label>CALORIES/CARBOHYDRATES</label></div>
                 </div>
                 <div class="clearfix"></div>
-            </div>
+            </div>-->
             <div class="clearfix"></div>
             <div class="green-box-big">
                 <div class="col-sm-3"><div class="green1">
                     <?php 
                         if($percent_daily_value > 0){
-                            echo 'Your excess calories was '.round($percent_daily_value);
+                            echo 'You had an excess of '.round($percent_daily_value).' Calories';
                         }else{
-                            echo 'Your Calories deficit was '.round($percent_daily_value);
+                            echo 'You had an deficit of '.round($percent_daily_value).' Calories';
                         }
                     ?>
                 </div></div>
                 <div class="col-sm-3"><div class="green2">This is equivalant to <?php echo round($equivalant_jogging); ?> minutes Joggin</div></div>
-                <div class="col-sm-3"><div class="green3">Or <?php echo round($apple_bar); ?> Apple Bars</div></div>
+                <div class="col-sm-3"><div class="green3">Or This is equivalent to <?php echo round($apple_bar); ?> Apples</div></div>
                 <div class="col-sm-3"><div class="green4">
                     Height : <?php echo $profile->height; ?><br/>
                     Weight : <?php echo $profile->actual_weight; ?><br/>
@@ -381,10 +382,10 @@ if($remain_satufat > 0)
                 <div class="col-sm-8">
                     <div class="macro-list">
                         <div class="col-sm-4">
-                            <div class="head">MACRO</div>
+                            
                         </div>
                         <div class="col-sm-8">
-                             <div class="head">GOAL</div>
+                             
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -395,7 +396,7 @@ if($remain_satufat > 0)
                         <div class="col-sm-8">
                              <div class="progress process-bar">
                                 <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_calory; ?>%"><?php echo $percent_calory; ?>%</div>
-                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:<?php echo $percent_calory_remain; ?>%"><?php echo $percent_calory_remain; ?>%</div>
+                                <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_calory_remain; ?>%"><?php echo $percent_calory_remain; ?>%</div>
                             </div>
                         </div>
                     </div>
@@ -406,7 +407,7 @@ if($remain_satufat > 0)
                         <div class="col-sm-8">
                              <div class="progress process-bar">
                                 <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_fat; ?>%"><?php echo $percent_fat; ?>%</div>
-                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:<?php echo $percent_fat_remain; ?>%"><?php echo $percent_fat_remain; ?>%</div>
+                                <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_fat_remain; ?>%"><?php echo $percent_fat_remain; ?>%</div>
                             </div>
                         </div>
                     </div>
@@ -417,7 +418,7 @@ if($remain_satufat > 0)
                         <div class="col-sm-8">
                              <div class="progress process-bar">
                                 <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_satufat; ?>%"><?php echo $percent_satufat; ?>%</div>
-                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:<?php echo $percent_satufat_remain; ?>%"><?php echo $percent_satufat_remain; ?>%</div>
+                                <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_satufat_remain; ?>%"><?php echo $percent_satufat_remain; ?>%</div>
                             </div>
                         </div>
                     </div>
@@ -428,7 +429,7 @@ if($remain_satufat > 0)
                         <div class="col-sm-8">
                              <div class="progress process-bar">
                                 <div class="progress-bar progress-bar-success" role="progressbar" style="width:80%">80%</div>
-                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">20%</div>
+                                <div class="progress-bar progress-bar-blue" role="progressbar" style="width:20%">20%</div>
                             </div>
                         </div>
                     </div>
@@ -439,7 +440,7 @@ if($remain_satufat > 0)
                         <div class="col-sm-8">
                              <div class="progress process-bar">
                                 <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_carb; ?>%"><?php echo $percent_carb; ?>%</div>
-                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:<?php echo $percent_carb_remain; ?>%"><?php echo $percent_carb_remain; ?>%</div>
+                                <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_carb_remain; ?>%"><?php echo $percent_carb_remain; ?>%</div>
                             </div>
                         </div>
                     </div>
@@ -450,7 +451,7 @@ if($remain_satufat > 0)
                         <div class="col-sm-8">
                              <div class="progress process-bar">
                                 <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_sugar; ?>%"><?php echo $percent_sugar; ?>%</div>
-                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:<?php echo $percent_sugar_remain; ?>%"><?php echo $percent_sugar_remain; ?>%</div>
+                                <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_sugar_remain; ?>%"><?php echo $percent_sugar_remain; ?>%</div>
                             </div>
                         </div>
                     </div>
@@ -461,7 +462,7 @@ if($remain_satufat > 0)
                         <div class="col-sm-8">
                              <div class="progress process-bar">
                               <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_protien; ?>%"><?php echo $percent_protien; ?>%</div>
-                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:<?php echo $percent_protien_remain; ?>%"><?php echo $percent_protien_remain; ?>%</div>
+                                <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_protien_remain; ?>%"><?php echo $percent_protien_remain; ?>%</div>
                             </div>
                         </div>
                     </div>
@@ -472,7 +473,7 @@ if($remain_satufat > 0)
                         <div class="col-sm-8">
                              <div class="progress process-bar">
                               <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_dietaryfiber; ?>%"><?php echo $percent_dietaryfiber; ?>%</div>
-                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:<?php echo $percent_dietaryfiber_remain; ?>%"><?php echo $percent_dietaryfiber_remain; ?>%</div>
+                                <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_dietaryfiber_remain; ?>%"><?php echo $percent_dietaryfiber_remain; ?>%</div>
                             </div>
                         </div>
                     </div>
@@ -483,7 +484,7 @@ if($remain_satufat > 0)
                         <div class="col-sm-8">
                              <div class="progress process-bar">
                               <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_cholesterol; ?>%"><?php echo $percent_cholesterol; ?>%</div>
-                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:<?php echo $percent_cholesterol_remain; ?>%"><?php echo $percent_cholesterol_remain; ?>%</div>
+                                <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_cholesterol_remain; ?>%"><?php echo $percent_cholesterol_remain; ?>%</div>
                             </div>
                         </div>
                     </div>
@@ -494,7 +495,7 @@ if($remain_satufat > 0)
                         <div class="col-sm-8">
                              <div class="progress process-bar">
                               <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_sodium; ?>%"><?php echo $percent_sodium; ?>%</div>
-                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:<?php echo $percent_sodium_remain; ?>%"><?php echo $percent_sodium_remain; ?>%</div>
+                                <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_sodium_remain; ?>%"><?php echo $percent_sodium_remain; ?>%</div>
                             </div>
                         </div>
                     </div>
@@ -505,7 +506,7 @@ if($remain_satufat > 0)
                         <div class="col-sm-8">
                              <div class="progress process-bar">
                               <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_vitamina; ?>%"><?php echo $percent_vitamina; ?>%</div>
-                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:<?php echo $percent_vitamina_remain; ?>%"><?php echo $percent_vitamina_remain; ?>%</div>
+                                <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_vitamina_remain; ?>%"><?php echo $percent_vitamina_remain; ?>%</div>
                             </div>
                         </div>
                     </div>
@@ -516,7 +517,7 @@ if($remain_satufat > 0)
                         <div class="col-sm-8">
                              <div class="progress process-bar">
                               <div class="progress-bar progress-bar-success" role="progressbar" style="width:80%">80%</div>
-                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">20%</div>
+                                <div class="progress-bar progress-bar-blue" role="progressbar" style="width:20%">20%</div>
                             </div>
                         </div>
                     </div>
@@ -527,7 +528,7 @@ if($remain_satufat > 0)
                         <div class="col-sm-8">
                              <div class="progress process-bar">
                               <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_calcium; ?>%"><?php echo $percent_calcium; ?>%</div>
-                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:<?php echo $percent_calcium_remain; ?>%"><?php echo $percent_calcium_remain; ?>%</div>
+                                <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_calcium_remain; ?>%"><?php echo $percent_calcium_remain; ?>%</div>
                             </div>
                         </div>
                     </div>
@@ -538,7 +539,7 @@ if($remain_satufat > 0)
                         <div class="col-sm-8">
                              <div class="progress process-bar">
                               <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_iron; ?>%"><?php echo $percent_iron; ?>%</div>
-                                <div class="progress-bar progress-bar-danger" role="progressbar" style="width:<?php echo $percent_iron_remain; ?>%"><?php echo $percent_iron_remain; ?>%</div>
+                                <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_iron_remain; ?>%"><?php echo $percent_iron_remain; ?>%</div>
                             </div>
                         </div>
                     </div>
@@ -611,12 +612,6 @@ if($remain_satufat > 0)
     <script src="<?php echo base_url('theme/js/custom-food.js'); ?>"></script>
     <script>
        window.onload = function () {
-            CanvasJS.addColorSet('customColorSet1',
-             [//colorSet Array
-             "#0067b4",
-             "#7ac81a",
-             "#404040",
-            ]); 
             var chart = new CanvasJS.Chart("chartContainer",
             {
                 animationEnabled: true,
@@ -635,9 +630,9 @@ if($remain_satufat > 0)
                     showInLegend: false,
                     indexLabel: "#percent%", 
                     dataPoints: [
-                        {  y: <?php echo $total_calories; ?>, name: "Calories"},
-                        {  y: <?php echo $total_protien; ?>, name: "Protein"},
-                        {  y: <?php echo $total_fat; ?>, name: "Fats"}
+                        {  y: <?php echo $total_calories; ?>, name: "Calories",color:"#0067b5", indexLabel: "Calories"},
+                        {  y: <?php echo $total_protien; ?>, name: "Protein",color:"#413f41", indexLabel: "Protein"},
+                        {  y: <?php echo $total_fat; ?>, name: "Fats",color:"#7bc917", indexLabel: "Fats"}  
                     ]
                 }
                 ]
@@ -661,9 +656,9 @@ if($remain_satufat > 0)
                     showInLegend: false,
                     indexLabel: "#percent%", 
                     dataPoints: [
-                        {  y: <?php echo $caloties_from_carb; ?>, name: "Carbohydrates"},
-                        {  y: <?php echo $caloties_from_protein; ?>, name: "Protein"},
-                        {  y: <?php echo $caloties_from_fat; ?>, name: "Fats"}
+                        {  y: <?php echo $caloties_from_carb; ?>, name: "Carbohydrates",color:"#0067b5", indexLabel: "Carbohydrates"},
+                        {  y: <?php echo $caloties_from_protein; ?>, name: "Protein",color:"#413f41", indexLabel: "Protein"},
+                        {  y: <?php echo $caloties_from_fat; ?>, name: "Fats",color:"#7bc917", indexLabel: "Fats"}
                         
                     ]
                 }
@@ -672,13 +667,14 @@ if($remain_satufat > 0)
 
             var chart3 = new CanvasJS.Chart("chartContainer3",
             {
-
+                
                 animationEnabled: true,
                 data: [
                 {        
                     type: "pie",    
                     indexLabelFontSize: 20,
                     indexLabelFontWeight: "bold",
+                    colorSet: "greenShades",
                     startAngle:0,
                     indexLabelFontColor: "MistyRose",       
                     indexLabelLineColor: "darkgrey", 
@@ -687,9 +683,9 @@ if($remain_satufat > 0)
                     showInLegend: false,
                     indexLabel: "#percent%", 
                     dataPoints: [
-                        {  y: <?php echo $chart_carb; ?>, name: "Carbohydrates"},
-                        {  y: <?php echo $chart_protein; ?>, name: "Protein"},
-                        {  y: <?php echo $chart_fat; ?>, name: "Fats"}
+                        {  y: <?php echo $chart_carb; ?>, name: "Carbohydrates",color:"#0067b5", indexLabel: "Carbohydrates"},
+                        {  y: <?php echo $chart_protein; ?>, name: "Protein",color:"#413f41", indexLabel: "Protein"},
+                        {  y: <?php echo $chart_fat; ?>, name: "Fats",color:"#7bc917", indexLabel: "Fats"}
                     ]
                 }
                 ]

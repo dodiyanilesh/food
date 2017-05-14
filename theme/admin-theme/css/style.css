@@ -13348,10 +13348,10 @@ ul[data-pie-id] {
 svg:not(:root){ width:100%; max-height: 350px; height: 350px;}
 svg text{ opacity: 1 !important; font-weight: bold; color: #fff !important; font-size: 18px;}
 .green-box-big{ margin: 30px 0;}
-.green-box-big .green1{ background: #84bd94; padding: 20px; color: #fff; font-size: 18px; font-weight: bold; }
-.green-box-big .green2{ background: #9acc5d; padding: 20px; color: #fff; font-size: 18px; font-weight: bold; }
-.green-box-big .green3{ background: #ace26a; padding: 20px; color: #fff; font-size: 18px; font-weight: bold; }
-.green-box-big .green4{ background: #c0e693; padding: 20px; color: #fff; font-size: 18px; font-weight: bold; }
+.green-box-big .green1{ background: #84bd94; height: 130px; padding: 20px; padding-top: 40px; color: #fff; font-size: 18px; font-weight: bold; }
+.green-box-big .green2{ background: #9acc5d; height: 130px; padding: 20px; padding-top: 40px; color: #fff; font-size: 18px; font-weight: bold; }
+.green-box-big .green3{ background: #ace26a; height: 130px; padding: 20px; padding-top: 40px; color: #fff; font-size: 18px; font-weight: bold; }
+.green-box-big .green4{ background: #c0e693; height: 130px; padding: 20px; color: #fff; font-size: 18px; font-weight: bold; }
 .macro-details{ margin: 30px 0; }
 .macro-list .head{ font-size: 20px; }
 .progress.process-bar{ height: auto; margin-bottom: 5px;}
@@ -13384,3 +13384,4 @@ svg text{ opacity: 1 !important; font-weight: bold; color: #fff !important; font
     box-shadow: none;
     font-size: 24px;
 }
+.progress-bar-blue{ background: #0176cf;}
