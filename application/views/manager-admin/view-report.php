@@ -169,17 +169,18 @@ $caloties_from_fat = $total_fat*9;
 $caloties_from_protein = $total_protien*4;
 $caloties_from_carb = $total_carbs*4;
 $percent_daily_value = $bmr*$active_level;
-$apple_bar = $percent_daily_value/9;
-$equivalant_jogging = $percent_daily_value/(0.16*$weight);
+$access_calories = $total_calories-($bmr*$active_level);
+$apple_bar = $access_calories/9;
+$equivalant_jogging = $access_calories/(0.16*$weight);
 
 //////////////// new calculation
 $bmi_calc1 = $weight*10000;
 $bmi_calc2 = $height*$height;
 $bmi = round($bmi_calc1/$bmi_calc2);
-$remain_calory = round($percent_daily_value-$total_calories);
+$remain_calory = round($access_calories-$total_calories);
 if($remain_calory > 0)
 {
-    $percent_calory = round(100*$total_calories/$percent_daily_value);
+    $percent_calory = round(100*$total_calories/$access_calories);
     $percent_calory_remain = 100-$percent_calory;
 }else{
     $percent_calory = '100';
