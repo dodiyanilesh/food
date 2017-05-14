@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-This is functions New
+This is functions order
 class Login extends CI_Controller {
     public function __construct()
     {
