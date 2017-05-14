@@ -41,6 +41,9 @@
            $totalpost_calcium = $this->input->post('totalpost_calcium');
            $totalpost_iron = $this->input->post('totalpost_iron');
            $totalpost_trans_fatty_acid = $this->input->post('totalpost_trans_fatty_acid');
+           
+           $totalpost_vitamin_b = $this->input->post('totalpost_vitamin_b');
+
 
            
            $meal =  $this->input->post('meal');
@@ -62,13 +65,36 @@
                         'total_vitamin ' => $totalpost_vitamin,
                         'total_calcium' => $totalpost_calcium,
                         'total_iron' => $totalpost_iron,
-                        'total_trans_fatty_acid' => $totalpost_trans_fatty_acid
+                        'total_trans_fatty_acid' => $totalpost_trans_fatty_acid,
+                        'total_vitamin_b' => $totalpost_vitamin_b,
+
                 );
 
             $this->db->insert('food_store_1', $firstTable);
             $insert_id = $this->db->insert_id();
+
+            $foodProductArray = array(); 
+            foreach ($foodProduct as $key => $value) {
+
+                    $foodProductArray[$key]['qty_total'] = $value['qty_total'];
+                    $foodProductArray[$key]['calories'] = $value['calories'];
+                    $foodProductArray[$key]['protein'] = $value['protein'];
+                    $foodProductArray[$key]['carbohydrate'] = $value['carbohydrate'];
+                    $foodProductArray[$key]['fat'] = $value['fat'];
+                    $foodProductArray[$key]['sodium'] = $value['sodium'];
+                    $foodProductArray[$key]['saturated_fat'] = $value['saturated_fat'];
+                    $foodProductArray[$key]['dietary_fiber'] = $value['dietary_fiber'];
+                    $foodProductArray[$key]['cholesterol'] = $value['cholesterol'];
+                    $foodProductArray[$key]['sugars'] = $value['sugars'];
+                    $foodProductArray[$key]['food_store_1_id'] = $insert_id;
+                    $foodProductArray[$key]['vitamin_a'] = $value['vitamin_a'];
+                    $foodProductArray[$key]['nf_calcium_dv'] = $value['nf_calcium_dv'];
+                    $foodProductArray[$key]['nf_iron_dv'] = $value['nf_iron_dv'];
+                    $foodProductArray[$key]['nf_trans_fatty_acid'] = $value['nf_trans_fatty_acid'];
+                    $foodProductArray[$key]['nf_vitamin_b'] = $value['nf_vitamin_b'];
+            }
             
-            $this->db->insert_batch('food_store_2', $foodProduct);
+            $this->db->insert_batch('food_store_2', $foodProductArray);
             echo $insert_id = $this->db->insert_id();
             
         }

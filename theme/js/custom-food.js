@@ -108,6 +108,8 @@ $(document).ready(function(){
                            var nf_iron_dv = value.nf_iron_dv;
                            var nf_trans_fatty_acid = value.nf_trans_fatty_acid;
 
+                           var nf_vitamin_b = value.usda_fields.VITB6A.value;
+                             
                             if(carbohydrate == null){
                                 carbohydrate = 0;
                             }
@@ -150,6 +152,11 @@ $(document).ready(function(){
                             if(nf_trans_fatty_acid == null){
                                 nf_trans_fatty_acid  = 0;
                             }
+
+                             if(nf_vitamin_b == null){
+                                nf_vitamin_b  = 0;
+                            }
+                               
                                 
                                 var singal_item ='<div id="singal_item_'+count_start+'" class="itemProduct"><div class="col-xs-11">'+
                                         '<div class="item-calorie">'+
@@ -159,7 +166,7 @@ $(document).ready(function(){
                                         '<div class="item-info"><i class="fa fa-info-circle"></i></div>'+
                                         '<div class="item-photo">IMAGE</div>'+
                                         '<div class="item-wrap">'+
-                                         '<div class="item-serving-size"><input class="form-control  text-center" onkeyup="return calculate(this)" id="total_'+count_start+'" saturated="'+saturated+'" cholesterol="'+cholesterol+'" sugars="'+sugars+'" nf_dietary_fiber="'+nf_dietary_fiber+'"  loop="'+count_start+'" carbohydrate="'+carbohydrate+'" fat="'+totalFat+'" sodium="'+sodium+'"  protein="'+protein+'" cal="'+calories+'" vitamin_a_dv="'+vitamin_a_dv+'" nf_calcium="'+nf_calcium+'" nf_iron_dv="'+nf_iron_dv+'" nf_trans_fatty_acid="'+nf_trans_fatty_acid+'" value="" type="text" name="food['+count_start+'][qty_total]" placeholder="1"></div>'+
+                                         '<div class="item-serving-size"><input class="form-control  text-center" onkeyup="return calculate(this)" id="total_'+count_start+'" saturated="'+saturated+'" cholesterol="'+cholesterol+'" sugars="'+sugars+'" nf_dietary_fiber="'+nf_dietary_fiber+'"  loop="'+count_start+'" carbohydrate="'+carbohydrate+'" fat="'+totalFat+'" sodium="'+sodium+'"  protein="'+protein+'" cal="'+calories+'" vitamin_a_dv="'+vitamin_a_dv+'" nf_calcium="'+nf_calcium+'" nf_iron_dv="'+nf_iron_dv+'" nf_trans_fatty_acid="'+nf_trans_fatty_acid+'" nf_vitamin_b="'+nf_vitamin_b+'" value="" type="text" name="food['+count_start+'][qty_total]" placeholder="1"></div>'+
                                             // '<div class="item-serving-unit">'+
                                             //  '<select class="form-control" name="tags[]">'+
                                             //      '<option label="cup" value="object:2222">cup</option>'+
@@ -184,6 +191,8 @@ $(document).ready(function(){
                                             '<input class="form-control text-center nf_calcium_dvClass" id="nf_calcium_dv_'+count_start+'" value="'+nf_calcium+'" type="hidden" name="food['+count_start+'][nf_calcium_dv]">'+
                                             '<input class="form-control text-center nf_iron_dvClass" id="nf_iron_dv_'+count_start+'" value="'+nf_iron_dv+'" type="hidden" name="food['+count_start+'][nf_iron_dv]">'+
                                             '<input class="form-control text-center nf_trans_fatty_acidClass" id="nf_trans_fatty_acid_'+count_start+'" value="'+nf_trans_fatty_acid+'" type="hidden" name="food['+count_start+'][nf_trans_fatty_acid]">'+
+                                            
+                                            '<input class="form-control text-center nf_vitamin_b_Class" id="nf_vitamin_b_'+count_start+'" value="'+nf_vitamin_b+'" type="hidden" name="food['+count_start+'][nf_vitamin_b]">'+
                                            '</div>'+
                                     '</div>'+
                                     '<div class="col-xs-1 delete-item">'+
@@ -237,6 +246,10 @@ function calculate(arg){
     var nf_iron_dv              =  arg.getAttribute('nf_iron_dv');
     var nf_trans_fatty_acid     =  arg.getAttribute('nf_trans_fatty_acid');
 
+    var nf_vitamin_a_dv         =  arg.getAttribute('nf_vitamin_b');
+
+
+
     var totalCarbohydrate = carbohydrateData * value;
     var totalFat = fatData * value;
     var totalSodium = sodiumData * value;
@@ -252,6 +265,8 @@ function calculate(arg){
     var totalNf_calcium          = nf_calcium          * value; 
     var totalNf_iron_dv          = nf_iron_dv          * value; 
     var totalNf_trans_fatty_acid = nf_trans_fatty_acid * value; 
+
+    var totalNf_nf_vitamin_a_dv = nf_vitamin_a_dv  * value; 
     
 
     $("#firstCalories_"+loopNumber).val(totalCal);
@@ -269,6 +284,8 @@ function calculate(arg){
     $("#nf_calcium_dv_"+loopNumber).val(totalNf_calcium);
     $("#nf_iron_dv_"+loopNumber).val(totalNf_iron_dv);
     $("#nf_trans_fatty_acid_"+loopNumber).val(totalNf_trans_fatty_acid);
+
+    $("#nf_vitamin_b_"+loopNumber).val(totalNf_nf_vitamin_a_dv);
 
 
 
@@ -343,6 +360,12 @@ function change_total_p_c_f_s(){
             totalNf_trans_fatty_acidClass += +$(this).val();
         });
 
+
+         totalNf_nf_vitamin_b_Class = 0;
+        $(".nf_vitamin_b_Class").each(function(){
+            totalNf_nf_vitamin_b_Class += +$(this).val();
+        });
+
         totalClass = 0;
        
         $("#totalProtein").html("");
@@ -372,6 +395,8 @@ function change_total_p_c_f_s(){
         $("#totalpost_calcium").val(totalnf_calcium_dvClass);
         $("#totalpost_iron").val(totalNf_iron_dvClass);
         $("#totalpost_trans_fatty_acid").val(totalNf_trans_fatty_acidClass);
+
+        $("#totalpost_vitamin_b").val(totalNf_nf_vitamin_b_Class);
 
 }
 

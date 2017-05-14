@@ -483,6 +483,8 @@
                                     <input type="hidden" name="totalpost_iron" id="totalpost_iron" value="">
                                     <input type="hidden" name="totalpost_trans_fatty_acid" id="totalpost_trans_fatty_acid" value="">
 
+                                    <input type="hidden" name="totalpost_vitamin_b" id="totalpost_vitamin_b" value="">
+
 
 
                                     <input type="hidden" name="userId" id="userId" value="<?php echo $user_id;?>">
