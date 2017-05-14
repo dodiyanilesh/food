@@ -451,7 +451,7 @@
                                     </div>
                                 
                                 <div class="singal-foods-dropdown-menu-main">
-                                    <ul class="singal-foods-dropdown-menu foods-menu foods-menu-add-list"></ul>
+                                    <ul class="singal-foods-dropdown-menu foods-menu foods-menu-add-list" id="append_log_popup"></ul>
                                 </div>
                                 
                                 </div>

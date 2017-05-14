@@ -14,7 +14,6 @@
             $this->load->model('User');
             $this->load->model('Food_log');
         }
-        
         public function index()
         {
             $user_id = $this->uri->segment(3);
