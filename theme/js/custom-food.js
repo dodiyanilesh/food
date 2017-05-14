@@ -157,7 +157,7 @@ $(document).ready(function(){
                                             '<span class="block">Cal</span>'+
                                         '</div>'+
                                         '<div class="item-info"><i class="fa fa-info-circle"></i></div>'+
-                                        '<div class="item-photo"><img src="http://localhost/food/theme/admin-theme/images/coconut-img.jpg" alt=""></div>'+
+                                        '<div class="item-photo">IMAGE</div>'+
                                         '<div class="item-wrap">'+
                                          '<div class="item-serving-size"><input class="form-control  text-center" onkeyup="return calculate(this)" id="total_'+count_start+'" saturated="'+saturated+'" cholesterol="'+cholesterol+'" sugars="'+sugars+'" nf_dietary_fiber="'+nf_dietary_fiber+'"  loop="'+count_start+'" carbohydrate="'+carbohydrate+'" fat="'+totalFat+'" sodium="'+sodium+'"  protein="'+protein+'" cal="'+calories+'" vitamin_a_dv="'+vitamin_a_dv+'" nf_calcium="'+nf_calcium+'" nf_iron_dv="'+nf_iron_dv+'" nf_trans_fatty_acid="'+nf_trans_fatty_acid+'" value="" type="text" name="food['+count_start+'][qty_total]" placeholder="1"></div>'+
                                             // '<div class="item-serving-unit">'+
@@ -423,95 +423,39 @@ function fatch_food_data(){
         }
 
 
+$(function() {
+		var eventDates = {};
+    eventDates[ new Date( '05/04/2017' )] = new Date( '12/04/2016' );
+    eventDates[ new Date( '05/06/2017' )] = new Date( '12/06/2016' );
+    eventDates[ new Date( '05/20/2017' )] = new Date( '12/20/2016' );
+    eventDates[ new Date( '05/25/2017' )] = new Date( '12/25/2016' );
 
-window.onload = function () {
-    CanvasJS.addColorSet('customColorSet1',
-     [//colorSet Array
-     "#0067b4",
-     "#7ac81a",
-     "#404040",
-    ]); 
-    var chart = new CanvasJS.Chart("chartContainer",
-    {
-        animationEnabled: true,
-        data: [
-        {      
-            backgroundColor: "transparent",
-            type: "pie",
-            colorSet:  "customColorSet1",
-            indexLabelFontSize: 20,
-            indexLabelFontWeight: "bold",
-            startAngle:0,
-            indexLabelFontColor: "MistyRose",       
-            indexLabelLineColor: "darkgrey", 
-            indexLabelPlacement: "inside", 
-            toolTipContent: "{name}: {y}hrs",
-            showInLegend: false,
-            indexLabel: "#percent%", 
-            dataPoints: [
-                {  y: 52, name: "Time At Work"},
-                {  y: 44, name: "Time At Home"},
-                {  y: 12, name: "Time Spent Out", legendMarkerType: "circle"}
-            ]
-        }
-        ]
+    var SeletedText = {};
+    SeletedText[new Date('05/04/2017')] = 'Holiday1';
+    SeletedText[new Date('05/06/2017')] = 'Holiday2';
+    SeletedText[new Date('05/20/2017')] = 'Holiday3'; 
+	
+    $( "#datepicker" ).datepicker({
+    dateFormat: 'dd/mm/yy',
+      beforeShowDay: function(date) {
+          var highlight = eventDates[date];
+          var HighlighText = SeletedText[date];
+          if (highlight) {
+                return [true, "Highlighted", HighlighText];
+            }
+            else {
+                return [true, '', ''];
+            }
+       }
     });
-    var chart2 = new CanvasJS.Chart("chartContainer2",
-    {
-        
-        animationEnabled: true,
-        data: [
-        {       
-            backgroundColor: "transparent",
-            type: "pie",
-            colorSet:  "customColorSet1",
-            indexLabelFontSize: 20,
-            indexLabelFontWeight: "bold",
-            startAngle:0,
-            indexLabelFontColor: "MistyRose",       
-            indexLabelLineColor: "darkgrey", 
-            indexLabelPlacement: "inside", 
-            toolTipContent: "{name}: {y}hrs",
-            showInLegend: false,
-            indexLabel: "#percent%", 
-            dataPoints: [
-                {  y: 52, name: "Time At Work", legendMarkerType: "triangle"},
-                {  y: 44, name: "Time At Home", legendMarkerType: "square"},
-                {  y: 12, name: "Time Spent Out", legendMarkerType: "circle"}
-            ]
-        }
-        ]
+    $("#datepicker").on("change",function(){
+        var selected = $(this).val();
+        alert(selected);
     });
     
-    var chart3 = new CanvasJS.Chart("chartContainer3",
-    {
-        
-        animationEnabled: true,
-        data: [
-        {        
-            type: "pie",    
-            indexLabelFontSize: 20,
-            indexLabelFontWeight: "bold",
-            startAngle:0,
-            indexLabelFontColor: "MistyRose",       
-            indexLabelLineColor: "darkgrey", 
-            indexLabelPlacement: "inside", 
-            toolTipContent: "{name}: {y}hrs",
-            showInLegend: false,
-            indexLabel: "#percent%", 
-            dataPoints: [
-                {  y: 52, name: "Time At Work", legendMarkerType: "triangle"},
-                {  y: 44, name: "Time At Home", legendMarkerType: "square"},
-                {  y: 12, name: "Time Spent Out", legendMarkerType: "circle"}
-            ]
-        }
-        ]
-    });
-    chart.render();
-    chart2.render();
-    chart3.render();
-    $('.canvasjs-chart-credit').remove();
-}
+    $(".").tooltip();
+       $( "#datepicker_2" ).datepicker();
+});
 
 $("#generate_report_btn").click(function(){
      html2canvas($("#capture_image"), {

@@ -13363,7 +13363,7 @@ svg text{ opacity: 1 !important; font-weight: bold; color: #fff !important; font
 .blue-box-in .stocked3{ height: 20px; width: 30px; background-color: #369ead; float: left; margin-right: 10px; }
 .blue-box-in label{ float: left;}
 .Instruction{ text-align: center; }
-.Instruction .col-sm-2{ display: inline-block; float: none; margin: 0 auto; }
+.Instruction .col-sm-2,.Instruction .col-sm-3{ display: inline-block; float: none; margin: 0 auto; }
 .food-image-wrap { float: left; padding-right: 12px; }
 .middle-report{ margin: 30px auto; float: none; background: #fff; padding: 30px 10px; }
 .all-caps{ text-transform: uppercase; }
@@ -13377,3 +13377,10 @@ svg text{ opacity: 1 !important; font-weight: bold; color: #fff !important; font
 .instant-instru{ margin-top: 45%;}
 .svg-parent-inst svg{ height: 250px; }
 .canvasjs-chart-credit{ display: none !important; }
+.custom-general-repo {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #c8c8c8;
+    box-shadow: none;
+    font-size: 24px;
+}
