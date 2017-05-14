@@ -10,12 +10,21 @@
             {
                 redirect('manager-admin/login');
             }
+            $this->load->model('Profile');
+            $this->load->model('User');
+            $this->load->model('Food_log');
         }
         
         public function index()
         {
+            $user_id = $this->uri->segment(3);
+            $report_date_new = strtotime($this->uri->segment(4));
+            $data['profile'] = $this->Profile->get_profile_on_id($user_id);
+            $data['user'] = $this->User->get_user_on_id($user_id);
+            $data['report_date'] = $this->uri->segment(4);
+            $data['food_first'] = $this->Food_log->get_food_total_val($user_id, $report_date_new);
+            
             $this->load->view('manager-admin/include/header');
-            $this->load->view('manager-admin/view-report');
-            $this->load->view('manager-admin/include/footer');
+            $this->load->view('manager-admin/view-report', $data);
         }
     }

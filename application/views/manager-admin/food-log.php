@@ -72,6 +72,18 @@
                         </div>
                         <h2 class="heading">veer ramlugon's Food Log</h2>
                         <div class="rightbar">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="panel panel-default panel-chart">
+                                        <div class="panel-heading" style="padding-bottom:5px;">
+                                            <div class="text-center">Track Calendar</div>
+                                        </div>
+                                        <div class="panel-body text-center">
+                                            <div id="datepicker"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <table class="table table-stats">
                                 <thead>
                                     <tr><th colspan="3">Stats</th></tr>
@@ -505,7 +517,7 @@
                                     <div class="meal-at">
                                         <div class="btn-group" data-toggle="buttons">
                                           <label class="btn btn-default">
-                                            <input type="radio" name="date" value="<?php echo date('Y-m-d'); ?>" autocomplete="off" checked> Today
+                                            <input type="radio" name="date" value="<?php echo date('Y-m-d'); ?>" autocomplete="off"> Today
                                           </label>
                                           <label class="btn btn-default">
                                             <input type="radio" name="date" value="<?php echo date('Y-m-d',strtotime("-1 days")); ?>" autocomplete="off"> Yesterday
