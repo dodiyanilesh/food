@@ -75,6 +75,10 @@
 
             $foodProductArray = array(); 
             foreach ($foodProduct as $key => $value) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 49b6b8f8b3fbac4b307f2ee5e84d8d86946586f7
                     $foodProductArray[$key]['qty_total'] = $value['qty_total'];
                     $foodProductArray[$key]['calories'] = $value['calories'];
                     $foodProductArray[$key]['protein'] = $value['protein'];

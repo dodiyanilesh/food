@@ -107,12 +107,17 @@ $(document).ready(function(){
                            var nf_iron_dv = value.nf_iron_dv;
                            var nf_trans_fatty_acid = value.nf_trans_fatty_acid;
 
+<<<<<<< HEAD
                             if(value.usda_fields != null){
                                 var nf_vitamin_b = value.usda_fields.VITB6A.value;
                             }else{
                                 var nf_vitamin_b = 0;
                             }
                             
+=======
+                           var nf_vitamin_b = value.usda_fields.VITB6A.value;
+                             
+>>>>>>> 49b6b8f8b3fbac4b307f2ee5e84d8d86946586f7
                             if(carbohydrate == null){
                                 carbohydrate = 0;
                             }
