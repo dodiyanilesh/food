@@ -13026,7 +13026,7 @@ img { max-width: 100%; }
 .nutrition_modal {}
 
 .modal-label {
-    max-width: 380px;
+    max-width: 500px;
 }
 
 .nutritionLabel {
@@ -13348,19 +13348,19 @@ ul[data-pie-id] {
 svg:not(:root){ width:100%; max-height: 350px; height: 350px;}
 svg text{ opacity: 1 !important; font-weight: bold; color: #fff !important; font-size: 18px;}
 .green-box-big{ margin: 30px 0;}
-.green-box-big .green1{ background: #84bd94; height: 130px; padding: 20px; padding-top: 40px; color: #fff; font-size: 18px; font-weight: bold; }
-.green-box-big .green2{ background: #9acc5d; height: 130px; padding: 20px; padding-top: 40px; color: #fff; font-size: 18px; font-weight: bold; }
-.green-box-big .green3{ background: #ace26a; height: 130px; padding: 20px; padding-top: 40px; color: #fff; font-size: 18px; font-weight: bold; }
-.green-box-big .green4{ background: #c0e693; height: 130px; padding: 20px; color: #fff; font-size: 18px; font-weight: bold; }
+.green-box-big .green1{ background: #84bd94; text-align: center; height: 90px; padding: 20px; color: #fff; font-size: 18px; font-weight: bold; }
+.green-box-big .green2{ background: #9acc5d; text-align: center; height: 90px; padding: 20px; color: #fff; font-size: 18px; font-weight: bold; }
+.green-box-big .green3{ background: #ace26a; text-align: center; height: 90px; padding: 20px; color: #fff; font-size: 18px; font-weight: bold; }
+.green-box-big .green4{ background: #c0e693; text-align: center; height: 90px; padding: 20px; color: #fff; font-size: 18px; font-weight: bold; }
 .macro-details{ margin: 30px 0; }
 .macro-list .head{ font-size: 20px; }
-.progress.process-bar{ height: auto; margin-bottom: 5px;}
+.progress.process-bar{ height: 30px; margin-bottom: 5px;}
 .nutri-comment{ font-size: 26px;}
 .progress-bar { font-size: 15px; font-weight: normal; padding: 8px 0; }
 .macro-title { font-size: 18px; font-weight: 500; text-transform: uppercase; }
-.blue-box-in .stocked1{ height: 20px; width: 30px; background-color: #c24642; float: left; margin-right: 10px; }
-.blue-box-in .stocked2{ height: 20px; width: 30px; background-color: #7f6084; float: left; margin-right: 10px; }
-.blue-box-in .stocked3{ height: 20px; width: 30px; background-color: #369ead; float: left; margin-right: 10px; }
+.blue-box-in .stocked1{ height: 20px; width: 20px; background-color: #0067b5; float: left; margin-right: 10px; }
+.blue-box-in .stocked2{ height: 20px; width: 20px; background-color: #b70000; float: left; margin-right: 10px; }
+.blue-box-in .stocked3{ height: 20px; width: 20px; background-color: #7bc917; float: left; margin-right: 10px; }
 .blue-box-in label{ float: left;}
 .Instruction{ text-align: center; }
 .Instruction .col-sm-2,.Instruction .col-sm-3{ display: inline-block; float: none; margin: 0 auto; }
@@ -13385,3 +13385,5 @@ svg text{ opacity: 1 !important; font-weight: bold; color: #fff !important; font
     font-size: 24px;
 }
 .progress-bar-blue{ background: #0176cf;}
+.caps-small{ text-transform: lowercase;}
+.progress-bar.overlimit{ background: #b70000;}

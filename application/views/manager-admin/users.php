@@ -21,6 +21,8 @@
                                             <th>First Name</th>
                                             <th>Last Name</th>
                                             <th>Email</th>
+                                            <th>Country</th>
+                                            <th>Plan Expired on</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -29,12 +31,25 @@
                                             if($users != FALSE){
                                                 $i=1;
                                                 foreach($users as $user){
+                                                    $profile = get_user_profile($user->id);
+                                                    $wapno = $profile->whatsapp_no;
+                                                    $wapp_exp = explode(' ',$wapno);
+                                                    $country_code = $wapp_exp[0];
+                                                    $country = get_country_row_on_code($country_code);
+                                                    $membership = check_membership($user->id);
+                                                    if($membership != FALSE){
+                                                        $membership_exp = date('d M, Y', strtotime($membership->membership_expired));
+                                                    }else{
+                                                        $membership_exp = 'Not Purchased';
+                                                    }
                                         ?>
                                                 <tr>
                                                     <td><?php echo $i; ?></td>
                                                     <td><?php echo $user->first_name; ?></td>
                                                     <td><?php echo $user->last_name; ?></td>
                                                     <td><?php echo $user->email; ?></td>
+                                                    <td><?php echo $country->nicename; ?></td>
+                                                    <td><?php echo $membership_exp; ?></td>
                                                     <td>
                                                         <a href="<?php echo base_url('manager-admin/food_log'); ?>">Food Log</a> &nbsp;&nbsp;&nbsp;
                                                         <a href="<?php echo base_url('manager-admin/edit_user/'.$user->id); ?>"><i class="fa fa-pencil fa-2x text-primary" aria-hidden="true"></i></a>&nbsp;&nbsp;

@@ -73,7 +73,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="example-email" class="col-md-12">How active are you</label>
+                                    <label for="example-email" class="col-md-12">How active are you? <a href="Javascript:void(0);" data-html="true" data-placement="right" data-toggle="popover" data-content="Sedentary: No vigorous activity, no exercise, no physical training.<br/><br/>
+
+Lightly Active: You walk for at least 30 minutes a day as exercise OR You train vigorously but for less than 15 minutes a day on average OR You jog daily but for less than 20 mins on average OR you train vigorously less than 3 times a week. Use this category if your daily occupation involves a lot of walking or running.<br/><br/>
+
+Active: Daily exercise equivalent to 1.5 hours of walking a day, OR Jogging for 50 minutes a day, OR you train vigorously 3-5 times a week ( at the gym, bootcamp, intense sports etc)<br/><br/>
+
+Very Active: Daily vigorous training such as cardio for over 1 hour OR gym training more than 6 times a week, OR intense sports that require a lot of physical effort. " class="info-tip"><i class="fa fa-question" aria-hidden="true" style="color:#f00;"></i></a></label>
                                     <div class="col-md-12">
                                         <select  class="form-control form-control-line" name="how_active" id="how_active">
                                           <option value="">How active are you</option>
@@ -128,17 +134,17 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="example-email" class="col-md-12">Are you Gluten ?</label>
+                                    <label for="example-email" class="col-md-12">Are you Gluten intolerant?</label>
                                     <div class="col-md-12">
                                         <input type="radio" class="g-radio-b" name="gluten" value="Yes" <?php if($profile->gluten == 'Yes'){ echo 'checked="checked"'; } ?> /> <span>Yes</span>
                                         <input type="radio" class="g-radio-b"  name="gluten" value="No" <?php if($profile->gluten == 'No'){ echo 'checked="checked"'; } ?> /> <span>No</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="example-email" class="col-md-12">How many unit of Alcohol do you consume in a week?</label>
+                                    <label for="example-email" class="col-md-12">How many unit of Alcohol do you consume in a week? <a href="Javascript:void(0);" data-html="true" data-placement="left" data-toggle="popover" data-content="1 unit is equivalent to a single measure of spirits (ABV 37.5%); <br/> OR half a pint of average-strength (4%) beer;<br/> OR two-thirds of a 125ml glass of average-strength (12%) wine." class="info-tip"><i style="color:#f00;" class="fa fa-question" aria-hidden="true"></i></a></label>
                                     <div class="col-md-12">
                                         <select  class="form-control form-control-line" name="alcohol" id="alcohol">
-                                          <option value="">How many unit of Alcohol do you consume in a week?</option>
+                                          <option value="">How many unit of Alcohol do you consume in a week? </option>
                                           <option value="I dont drink" <?php if($profile->alcohol == 'I dont drink'){ echo 'selected="selected"'; } ?>>I dont drink</option>
                                           <option value="1 unit" <?php if($profile->alcohol == '1 unit'){ echo 'selected="selected"'; } ?>>1 unit</option>
                                           <option value="2 units" <?php if($profile->alcohol == '2 units'){ echo 'selected="selected"'; } ?>>2 units</option>

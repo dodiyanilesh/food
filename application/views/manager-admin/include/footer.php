@@ -39,8 +39,10 @@
 
     <script>
         $(document).ready(function(){
-            $('#datatable').DataTable();
+            $('[data-toggle="popover"]').popover(); 
         })
+        
+        
     </script>
 </body>
 

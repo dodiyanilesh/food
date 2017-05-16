@@ -23,6 +23,7 @@
         $total_saturatedfat_balance = 0;
         $total_dietaryfiber_balance = 0;
         $total_sugar_balance = 0;
+        $total_vitaminb = 0;
         foreach($food_first as $food)
         {
             $total_protien = $food->total_protein+$total_protien;
@@ -38,21 +39,28 @@
             $total_calcium = $food->total_calcium+$total_calcium;
             $total_iron = $food->total_iron+$total_iron;
             $total_trans_fat = $food->total_trans_fatty_acid+$total_trans_fat;
+            $total_vitaminb = $food->total_vitamin_b+$total_vitaminb;
         }
         $total_calories_breakfast = 0;
         $total_calories_lunch = 0;
         $total_calories_dinner = 0;
-        foreach($breakfast as $breakfastfood)
-        {
-            $total_calories_breakfast = $breakfastfood->tatal_calories+$total_calories_breakfast;
+        if($breakfast != FALSE){
+            foreach($breakfast as $breakfastfood)
+            {
+                $total_calories_breakfast = $breakfastfood->tatal_calories+$total_calories_breakfast;
+            }
         }
-        foreach($lunch as $lunchfood)
-        {
-            $total_calories_lunch = $lunchfood->tatal_calories+$total_calories_lunch;
+        if($lunch != FALSE){
+            foreach($lunch as $lunchfood)
+            {
+                $total_calories_lunch = $lunchfood->tatal_calories+$total_calories_lunch;
+            }
         }
-        foreach($dinner as $dinnerfood)
-        {
-            $total_calories_dinner = $dinnerfood->tatal_calories+$total_calories_dinner;
+        if($dinner != FALSE){
+            foreach($dinner as $dinnerfood)
+            {
+                $total_calories_dinner = $dinnerfood->tatal_calories+$total_calories_dinner;
+            }
         }
     }
     if($profile->how_active == "Sedentary")
@@ -191,14 +199,18 @@ $equivalant_jogging = $access_calories/(0.16*$weight);
 $bmi_calc1 = $weight*10000;
 $bmi_calc2 = $height*$height;
 $bmi = round($bmi_calc1/$bmi_calc2);
-$remain_calory = round($access_calories-$total_calories);
+$remain_calory = round(abs($access_calories)-$total_calories);
 if($remain_calory > 0)
 {
-    $percent_calory = round(100*$total_calories/$access_calories);
+    $percent_calory = round(100*$total_calories/abs($access_calories));
     $percent_calory_remain = 100-$percent_calory;
+    $cal_bar_class = "inlimit";
+    $cal_bar_msg = '';
 }else{
     $percent_calory = '100';
     $percent_calory_remain = 0;
+    $cal_bar_class = "overlimit";
+    $cal_bar_msg = ' - Over your limit';
 }
 
 $remain_fat = round($fat_allowence-$total_fat);
@@ -206,10 +218,13 @@ if($remain_fat > 0)
 {
     $percent_fat = round(100*$total_fat/$fat_allowence);
     $percent_fat_remain = 100-$percent_fat;
-    
+    $fat_bar_class = "inlimit";
+    $fat_bar_msg = '';
 }else{
     $percent_fat = '100';
     $percent_fat_remain = 0;
+    $fat_bar_class = "overlimit";
+    $fat_bar_msg = ' - Over your limit';
 }
 
 $remain_satufat = round(20-$total_saturatedfat);
@@ -217,9 +232,13 @@ if($remain_satufat > 0)
 {
     $percent_satufat = round(100*$total_saturatedfat/20);
     $percent_satufat_remain = 100-$percent_satufat;
+    $satufat_bar_class = "inlimit";
+    $satufat_bar_msg = '';
 }else{
     $percent_satufat = '100';
     $percent_satufat_remain = 0;
+    $satufat_bar_class = "overlimit";
+    $satufat_bar_msg = ' - Over your limit';
 }
 $transfat_allowence = $percent_daily_value/900;
 $remain_transfat = round($transfat_allowence-$total_trans_fat,2);
@@ -227,9 +246,13 @@ if($remain_transfat > 0)
 {
     $percent_transfat = round(100*$total_trans_fat/$transfat_allowence);
     $percent_transfat_remain = 100-$percent_transfat;
+    $transfat_bar_class = "inlimit";
+    $transfat_bar_msg = '';
 }else{
     $percent_transfat = '100';
     $percent_transfat_remain = 0;
+    $transfat_bar_class = "overlimit";
+    $transfat_bar_msg = ' - Over your limit';
 }
 
 $remain_carb = round($carb_allowence-$total_carbs);
@@ -237,19 +260,26 @@ if($remain_carb > 0)
 {
     $percent_carb = round(100*$total_carbs/$carb_allowence);
     $percent_carb_remain = 100-$percent_carb;
+    $carb_bar_class = "inlimit";
+    $carb_bar_msg = '';
 }else{
     $percent_carb = '100';
     $percent_carb_remain = 0;
+    $carb_bar_class = "overlimit";
+    $carb_bar_msg = ' - Over your limit';
 }
-
 $remain_sugar = round($sugar_allowence-$total_sugar);
 if($remain_sugar > 0)
 {
-    $percent_sugar = round(100*$total_saturatedfat/$sugar_allowence);
+    $percent_sugar = round(100*$total_sugar/$sugar_allowence);
     $percent_sugar_remain = 100-$percent_sugar;
+    $sugar_bar_class = "inlimit";
+    $sugar_bar_msg = '';
 }else{
     $percent_sugar = '100';
     $percent_sugar_remain = 0;
+    $sugar_bar_class = "overlimit";
+    $sugar_bar_msg = ' - Over your limit';
 }
 
 $remain_protien = round($protein_allowence-$total_protien);
@@ -257,9 +287,13 @@ if($remain_protien > 0)
 {
     $percent_protien = round(100*$total_protien/$protein_allowence);
     $percent_protien_remain = 100-$percent_protien;
+    $protien_bar_class = "inlimit";
+    $protien_bar_msg = '';
 }else{
     $percent_protien = '100';
     $percent_protien_remain = 0;
+    $protien_bar_class = "overlimit";
+    $protien_bar_msg = ' - Over your limit';
 }
 
 $remain_dietaryfiber = round(25-$total_dietaryfiber);
@@ -267,9 +301,13 @@ if($remain_dietaryfiber > 0)
 {
     $percent_dietaryfiber = round(100*$total_dietaryfiber/25);
     $percent_dietaryfiber_remain = 100-$percent_dietaryfiber;
+    $dietaryfiber_bar_class = "inlimit";
+    $dietaryfiber_bar_msg = '';
 }else{
     $percent_dietaryfiber = '100';
     $percent_dietaryfiber_remain = 0;
+    $dietaryfiber_bar_class = "overlimit";
+    $dietaryfiber_bar_msg = ' - Over your limit';
 }
 
 $remain_cholesterol = round($cholesterol_allowence-$total_cholesterol);
@@ -277,9 +315,13 @@ if($remain_cholesterol > 0)
 {
     $percent_cholesterol = round(100*$total_cholesterol/$cholesterol_allowence);
     $percent_cholesterol_remain = 100-$percent_cholesterol;
+    $cholesterol_bar_class = "inlimit";
+    $cholesterol_bar_msg = '';
 }else{
     $percent_cholesterol = '100';
     $percent_cholesterol_remain = 0;
+    $cholesterol_bar_class = "overlimit";
+    $cholesterol_bar_msg = ' - Over your limit';
 }
 
 $remain_sodium = round(2400-$total_sodium);
@@ -287,9 +329,13 @@ if($remain_sodium > 0)
 {
     $percent_sodium = round(100*$total_sodium/2400);
     $percent_sodium_remain = 100-$percent_sodium;
+    $sodium_bar_class = "inlimit";
+    $sodium_bar_msg = '';
 }else{
     $percent_sodium = '100';
     $percent_sodium_remain = 0;
+    $sodium_bar_class = "overlimit";
+    $sodium_bar_msg = ' - Over your limit';
 }
 
 $remain_vitamina = round(5000-$total_vitamina);
@@ -297,38 +343,54 @@ if($remain_vitamina > 0)
 {
     $percent_vitamina = round(100*$total_vitamina/5000);
     $percent_vitamina_remain = 100-$percent_vitamina;
+    $vitamina_bar_class = "inlimit";
+    $vitamina_bar_msg = '';
 }else{
     $percent_vitamina = '100';
     $percent_vitamina_remain = 0;
+    $vitamina_bar_class = "overlimit";
+    $vitamina_bar_msg = ' - Over your limit';
 }
 $remain_calcium = round(1000-$total_calcium);
 if($remain_calcium > 0)
 {
     $percent_calcium = round(100*$total_calcium/1000);
     $percent_calcium_remain = 100-$percent_calcium;
+    $calcium_bar_class = "inlimit";
+    $calcium_bar_msg = '';
 }else{
     $percent_calcium = '100';
     $percent_calcium_remain = 0;
+    $calcium_bar_class = "overlimit";
+    $calcium_bar_msg = ' - Over your limit';
 }
 $remain_iron = round(18-$total_iron);
 if($remain_iron > 0)
 {
     $percent_iron = round(100*$total_iron/18);
     $percent_iron_remain = 100-$percent_iron;
+    $iron_bar_class = "inlimit";
+    $iron_bar_msg = '';
 }else{
     $percent_iron = '100';
     $percent_iron_remain = 0;
+    $iron_bar_class = "overlimit";
+    $iron_bar_msg = ' - Over your limit';
 }
 //Vitamin B
-/*$remain_satufat = round(20-$total_saturatedfat);
-if($remain_satufat > 0)
+$remain_vitaminb = round(2000-$total_vitaminb);
+if($remain_vitaminb > 0)
 {
-    $percent_satufat = round(100*$total_saturatedfat/20);
-    $percent_satufat_remain = 100-$percent_satufat;
+    $percent_vitaminb = round(100*$total_vitaminb/2000);
+    $percent_vitaminb_remain = 100-$percent_vitaminb;
+    $vitaminb_bar_class = "inlimit";
+    $vitaminb_bar_msg = '';
 }else{
-    $percent_satufat = '100';
-    $percent_satufat_remain = 0;
-}*/
+    $percent_vitaminb = '100';
+    $percent_vitaminb_remain = 0;
+    $vitaminb_bar_class = "overlimit";
+    $vitaminb_bar_msg = ' - Over your limit';
+}
 
     
 ?>
@@ -352,45 +414,70 @@ if($remain_satufat > 0)
             <div class="col-md-4">
               <div id="chartContainer" style="height: 300px; width: 100%;"></div>
                 <div class="head text-center">Calories Breakdown by Meal</div>
+            <div class="Instruction row" style="margin-top:20px;">
+                <div class="col-sm-4" style="padding:0 5px 0 15px;">
+                    <div class="blue-box-in"><div class="stocked1"></div> <label>Breakfast</label></div>
+                </div>
+                <div class="col-sm-4" style="padding:0 5px;">
+                    <div class="blue-box-in"><div class="stocked2"></div> <label>Lunch</label></div>
+                </div>
+                <div class="col-sm-4" style="padding:0 15px 0px 0;">
+                    <div class="blue-box-in"><div class="stocked3"></div> <label>Dinner</label></div>
+                </div>
+                <div class="clearfix"></div>
+                </div>
             </div>
             <div class="col-md-4">
               <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
+                <div class="head text-center">Today’s Sources of calories</div>
+                <div class="Instruction row" style="margin-top:20px;">
+                <div class="col-sm-4" style="padding:0 5px 0 15px;">
+                    <div class="blue-box-in"><div class="stocked1"></div> <label>Carbs</label></div>
+                </div>
+                <div class="col-sm-4" style="padding:0 5px;">
+                    <div class="blue-box-in"><div class="stocked2"></div> <label>Protein</label></div>
+                </div>
+                <div class="col-sm-4" style="padding:0 15px 0px 0;">
+                    <div class="blue-box-in"><div class="stocked3"></div> <label>Fats</label></div>
+                </div>
+                <div class="clearfix"></div>
+                </div>
             </div>
             <div class="col-md-4">
               <div id="chartContainer3" style="height: 300px; width: 100%;"></div>
-            </div>
-            <div class="clearfix"></div>
-            <!-- <div class="Instruction">
-                <div class="col-sm-2">
-                    <div class="blue-box-in"><div class="stocked1"></div> <label>PROTIEN</label></div>
+                <div class="head text-center">Your Ideal Sources of calories</div>
+            <div class="Instruction row" style="margin-top:20px;">
+                <div class="col-sm-4" style="padding:0 5px 0 15px;">
+                    <div class="blue-box-in"><div class="stocked1"></div> <label>Carbs</label></div>
                 </div>
-                <div class="col-sm-2">
-                    <div class="blue-box-in"><div class="stocked2"></div> <label>FATS</label></div>
+                <div class="col-sm-4" style="padding:0 5px;">
+                    <div class="blue-box-in"><div class="stocked2"></div> <label>Protein</label></div>
                 </div>
-                <div class="col-sm-3">
-                    <div class="blue-box-in"><div class="stocked3"></div> <label>CALORIES/CARBOHYDRATES</label></div>
+                <div class="col-sm-4" style="padding:0 15px 0px 0;">
+                    <div class="blue-box-in"><div class="stocked3"></div> <label>Fats</label></div>
                 </div>
                 <div class="clearfix"></div>
-            </div>-->
+                </div>
+            </div>
             <div class="clearfix"></div>
             <div class="green-box-big">
-                <div class="col-sm-3"><div class="green1">
+                <div class="col-sm-4"><div class="green1">
                     <?php 
-                        if($percent_daily_value > 0){
-                            echo 'You had an excess of '.round($percent_daily_value).' Calories';
+                        if($access_calories > 0){
+                            echo 'You had an excess of '.abs(round($access_calories)).' Calories';
                         }else{
-                            echo 'You had an deficit of '.round($percent_daily_value).' Calories';
+                            echo 'You had a deficit of '.abs(round($access_calories)).' Calories';
                         }
                     ?>
                 </div></div>
-                <div class="col-sm-3"><div class="green2">This is equivalant to <?php echo round($equivalant_jogging); ?> minutes Joggin</div></div>
-                <div class="col-sm-3"><div class="green3">Or This is equivalent to <?php echo round($apple_bar); ?> Apples</div></div>
-                <div class="col-sm-3"><div class="green4">
+                <div class="col-sm-4"><div class="green2">This is equivalant to <?php echo abs(round($equivalant_jogging)); ?> minutes jogging</div></div>
+                <div class="col-sm-4"><div class="green3">Or <?php echo abs(round($apple_bar)); ?> Apples</div></div>
+                <!--<div class="col-sm-3"><div class="green4">
                     Height : <?php echo $profile->height; ?><br/>
                     Weight : <?php echo $profile->actual_weight; ?><br/>
                     Age : <?php echo $profile->age; ?><br/>
                     BMI : <?php echo $bmi; ?><br/>
-                </div>
+                </div>-->
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -411,150 +498,150 @@ if($remain_satufat > 0)
                         </div>
                         <div class="col-sm-8">
                              <div class="progress process-bar">
-                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_calory; ?>%"><?php echo $total_calories; ?></div>
+                                <div class="progress-bar progress-bar-success <?php echo $cal_bar_class; ?>" role="progressbar" style="width:<?php echo $percent_calory; ?>%"><?php echo $total_calories.' '.$cal_bar_msg; ?></div>
                                 <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_calory_remain; ?>%"><?php echo $remain_calory; ?></div>
                             </div>
                         </div>
                     </div>
                     <div class="macro-list">
                         <div class="col-sm-4">
-                            <div class="macro-title">Fats/g</div>
+                            <div class="macro-title">Fats/<span class="caps-small">g</span></div>
                         </div>
                         <div class="col-sm-8">
                              <div class="progress process-bar">
-                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_fat; ?>%"><?php echo $total_fat; ?>g</div>
+                                <div class="progress-bar progress-bar-success <?php echo $fat_bar_class; ?>" role="progressbar" style="width:<?php echo $percent_fat; ?>%"><?php echo $total_fat; ?>g<?php echo $fat_bar_msg; ?></div>
                                 <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_fat_remain; ?>%"><?php echo $remain_fat; ?>g</div>
                             </div>
                         </div>
                     </div>
                     <div class="macro-list">
                         <div class="col-sm-4">
-                            <div class="macro-title">Saturated Fats/g</div>
+                            <div class="macro-title">Saturated Fats/<span class="caps-small">g</span></div>
                         </div>
                         <div class="col-sm-8">
                              <div class="progress process-bar">
-                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_satufat; ?>%"><?php echo $total_saturatedfat; ?>g</div>
+                                <div class="progress-bar progress-bar-success <?php echo $satufat_bar_class; ?>" role="progressbar" style="width:<?php echo $percent_satufat; ?>%"><?php echo $total_saturatedfat; ?>g<?php echo $satufat_bar_msg; ?></div>
                                 <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_satufat_remain; ?>%"><?php echo $remain_satufat; ?>g</div>
                             </div>
                         </div>
                     </div>
                     <div class="macro-list">
                         <div class="col-sm-4">
-                            <div class="macro-title">Trans Fats/g</div>
+                            <div class="macro-title">Trans Fats/<span class="caps-small">g</span></div>
                         </div>
                         <div class="col-sm-8">
                              <div class="progress process-bar">
-                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_transfat; ?>%"><?php echo $total_trans_fat; ?>g</div>
+                                <div class="progress-bar progress-bar-success <?php echo $transfat_bar_class; ?>" role="progressbar" style="width:<?php echo $percent_transfat; ?>%"><?php echo $total_trans_fat; ?>g<?php echo $transfat_bar_msg; ?></div>
                                 <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_transfat_remain; ?>%"><?php echo $remain_transfat; ?>g</div>
                             </div>
                         </div>
                     </div>
                     <div class="macro-list">
                         <div class="col-sm-4">
-                            <div class="macro-title">Carbohydrates/g</div>
+                            <div class="macro-title">Carbohydrates/<span class="caps-small">g</span></div>
                         </div>
                         <div class="col-sm-8">
                              <div class="progress process-bar">
-                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_carb; ?>%"><?php echo $total_carbs; ?>g</div>
+                                <div class="progress-bar progress-bar-success <?php echo $carb_bar_class; ?>" role="progressbar" style="width:<?php echo $percent_carb; ?>%"><?php echo $total_carbs; ?>g<?php echo $carb_bar_msg; ?></div>
                                 <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_carb_remain; ?>%"><?php echo $remain_carb; ?>g</div>
                             </div>
                         </div>
                     </div>
                     <div class="macro-list">
                         <div class="col-sm-4">
-                            <div class="macro-title">Sugars/g</div>
+                            <div class="macro-title">Sugars/<span class="caps-small">g</span></div>
                         </div>
                         <div class="col-sm-8">
                              <div class="progress process-bar">
-                                <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_sugar; ?>%"><?php echo $total_sugar; ?>g</div>
+                                <div class="progress-bar progress-bar-success <?php echo $sugar_bar_class; ?>" role="progressbar" style="width:<?php echo $percent_sugar; ?>%"><?php echo $total_sugar; ?>g<?php echo $sugar_bar_msg; ?></div>
                                 <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_sugar_remain; ?>%"><?php echo $remain_sugar; ?>g</div>
                             </div>
                         </div>
                     </div>
                     <div class="macro-list">
                         <div class="col-sm-4">
-                            <div class="macro-title">Protien/g</div>
+                            <div class="macro-title">Protein/<span class="caps-small">g</span></div>
                         </div>
                         <div class="col-sm-8">
                              <div class="progress process-bar">
-                              <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_protien; ?>%"><?php echo $total_protien; ?>g</div>
+                              <div class="progress-bar progress-bar-success <?php echo $protien_bar_class; ?>" role="progressbar" style="width:<?php echo $percent_protien; ?>%"><?php echo $total_protien; ?>g<?php echo $protien_bar_msg; ?></div>
                                 <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_protien_remain; ?>%"><?php echo $remain_protien; ?>g</div>
                             </div>
                         </div>
                     </div>
                     <div class="macro-list">
                         <div class="col-sm-4">
-                            <div class="macro-title">Fiber/g</div>
+                            <div class="macro-title">Fiber/<span class="caps-small">g</span></div>
                         </div>
                         <div class="col-sm-8">
                              <div class="progress process-bar">
-                              <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_dietaryfiber; ?>%"><?php echo $total_dietaryfiber; ?>g</div>
+                              <div class="progress-bar progress-bar-success <?php echo $dietaryfiber_bar_class; ?>" role="progressbar" style="width:<?php echo $percent_dietaryfiber; ?>%"><?php echo $total_dietaryfiber; ?>g<?php echo $dietaryfiber_bar_msg; ?></div>
                                 <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_dietaryfiber_remain; ?>%"><?php echo $remain_dietaryfiber; ?>g</div>
                             </div>
                         </div>
                     </div>
                     <div class="macro-list">
                         <div class="col-sm-4">
-                            <div class="macro-title">Cholesterol/mg</div>
+                            <div class="macro-title">Cholesterol/<span class="caps-small">mg</span></div>
                         </div>
                         <div class="col-sm-8">
                              <div class="progress process-bar">
-                              <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_cholesterol; ?>%"><?php echo $total_cholesterol; ?>mg</div>
+                              <div class="progress-bar progress-bar-success <?php echo $cholesterol_bar_class; ?>" role="progressbar" style="width:<?php echo $percent_cholesterol; ?>%"><?php echo $total_cholesterol; ?>mg<?php echo $cholesterol_bar_msg; ?></div>
                                 <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_cholesterol_remain; ?>%"><?php echo $remain_cholesterol; ?>mg</div>
                             </div>
                         </div>
                     </div>
                     <div class="macro-list">
                         <div class="col-sm-4">
-                            <div class="macro-title">Sodium/mg</div>
+                            <div class="macro-title">Sodium/<span class="caps-small">mg</span></div>
                         </div>
                         <div class="col-sm-8">
                              <div class="progress process-bar">
-                              <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_sodium; ?>%"><?php echo $total_sodium; ?>mg</div>
+                              <div class="progress-bar progress-bar-success <?php echo $sodium_bar_class; ?>" role="progressbar" style="width:<?php echo $percent_sodium; ?>%"><?php echo $total_sodium; ?>mg<?php echo $sodium_bar_msg; ?></div>
                                 <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_sodium_remain; ?>%"><?php echo $remain_sodium; ?>mg</div>
                             </div>
                         </div>
                     </div>
                     <div class="macro-list">
                         <div class="col-sm-4">
-                            <div class="macro-title">Vitamin A/IU</div>
+                            <div class="macro-title">Vitamin A/<span class="caps-small">IU</span></div>
                         </div>
                         <div class="col-sm-8">
                              <div class="progress process-bar">
-                              <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_vitamina; ?>%"><?php echo $total_vitamina; ?>iu</div>
+                              <div class="progress-bar progress-bar-success <?php echo $vitamina_bar_class; ?>" role="progressbar" style="width:<?php echo $percent_vitamina; ?>%"><?php echo $total_vitamina; ?>iu<?php echo $vitamina_bar_msg; ?></div>
                                 <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_vitamina_remain; ?>%"><?php echo $remain_vitamina; ?>iu</div>
                             </div>
                         </div>
                     </div>
                     <div class="macro-list">
                         <div class="col-sm-4">
-                            <div class="macro-title">Vitamin B/IU</div>
+                            <div class="macro-title">Vitamin B/<span class="caps-small">IU</span></div>
                         </div>
                         <div class="col-sm-8">
                              <div class="progress process-bar">
-                              <div class="progress-bar progress-bar-success" role="progressbar" style="width:80%">80%</div>
-                                <div class="progress-bar progress-bar-blue" role="progressbar" style="width:20%">20%</div>
+                              <div class="progress-bar progress-bar-success <?php echo $vitaminb_bar_class; ?>" role="progressbar" style="width:<?php echo $percent_vitaminb; ?>%"><?php echo $total_vitaminb; ?>iu<?php echo $vitaminb_bar_msg; ?></div>
+                                <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_vitaminb_remain; ?>%"><?php echo $remain_vitaminb; ?>iu</div>
                             </div>
                         </div>
                     </div>
                     <div class="macro-list">
                         <div class="col-sm-4">
-                            <div class="macro-title">Calcium/mg</div>
+                            <div class="macro-title">Calcium/<span class="caps-small">mg</span></div>
                         </div>
                         <div class="col-sm-8">
                              <div class="progress process-bar">
-                              <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_calcium; ?>%"><?php echo $total_calcium; ?>mg</div>
+                              <div class="progress-bar progress-bar-success <?php echo $calcium_bar_class; ?>" role="progressbar" style="width:<?php echo $percent_calcium; ?>%"><?php echo $total_calcium; ?>mg<?php echo $calcium_bar_msg; ?></div>
                                 <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_calcium_remain; ?>%"><?php echo $remain_calcium; ?>mg</div>
                             </div>
                         </div>
                     </div>
                     <div class="macro-list">
                         <div class="col-sm-4">
-                            <div class="macro-title">Iron/mg</div>
+                            <div class="macro-title">Iron/<span class="caps-small">mg</span></div>
                         </div>
                         <div class="col-sm-8">
                              <div class="progress process-bar">
-                              <div class="progress-bar progress-bar-success" role="progressbar" style="width:<?php echo $percent_iron; ?>%"><?php echo $total_iron; ?>mg</div>
+                              <div class="progress-bar progress-bar-success <?php echo $iron_bar_class; ?>" role="progressbar" style="width:<?php echo $percent_iron; ?>%"><?php echo $total_iron; ?>mg<?php echo $iron_bar_msg; ?></div>
                                 <div class="progress-bar progress-bar-blue" role="progressbar" style="width:<?php echo $percent_iron_remain; ?>%"><?php echo $remain_iron; ?>mg</div>
                             </div>
                         </div>
@@ -562,7 +649,6 @@ if($remain_satufat > 0)
                 </div>
                 <div class="col-sm-1"></div>
                 <div class="col-sm-3">
-                    <div class="head">THE FOOD ANALYSTS NOTES</div>
                     <div class="nutri-comment">
                         <textarea class="form-control custom-general-repo" id="food_comment" rows="7" placeholder="Enter Note Here..."></textarea>
                         <p id="food_comment_append"></p>
@@ -572,13 +658,11 @@ if($remain_satufat > 0)
             </div>
             <div class="clearfix">
             <div class="col-sm-12">
-                <div class="food-consume">
-                    <h2>FOOD YOU CONSUMED TODAY</h2>
-                    <p><input type="text" class="form-control custom-general-repo" id="consume_day_note" placeholder="Enter Note Here..." /></p>
+                <div class="food-consume" style="margin-bottom:30px; margin-top:20px;">
+                    <p><input type="text" class="form-control custom-general-repo" id="consume_day_note" placeholder="Food You Consumed Today" /></p>
                 </div>
                 <div class="food-consume">
-                    <h2>FOOD ANALYSTS</h2>
-                    <p><input type="text" class="form-control custom-general-repo" id="food_analysts_note" placeholder="Enter Note Here..." /></p>
+                    <p><input type="text" class="form-control custom-general-repo" id="food_analysts_note" placeholder="Food Analysts" /></p>
                 </div>
             </div>
             </div>
@@ -636,7 +720,7 @@ if($remain_satufat > 0)
                     backgroundColor: "transparent",
                     type: "pie",
                     colorSet:  "customColorSet1",
-                    indexLabelFontSize: 20,
+                    indexLabelFontSize: 14,
                     indexLabelFontWeight: "bold",
                     startAngle:0,
                     indexLabelFontColor: "MistyRose",       
@@ -646,9 +730,9 @@ if($remain_satufat > 0)
                     showInLegend: false,
                     indexLabel: "#percent%", 
                     dataPoints: [
-                        {  y: <?php echo $total_calories_breakfast; ?>, name: "Breakfast",color:"#0067b5", indexLabel: "Breakfast"},
-                        {  y: <?php echo $total_calories_lunch; ?>, name: "Lunch",color:"#413f41", indexLabel: "Lunch"},
-                        {  y: <?php echo $total_calories_dinner; ?>, name: "Dinner",color:"#7bc917", indexLabel: "Dinner"}  
+                        {  y: <?php echo $total_calories_breakfast; ?>, name: "Breakfast",color:"#0067b5"},
+                        <?php if($total_calories_lunch != 0){ ?>{  y: <?php echo $total_calories_lunch; ?>, name: "Lunch",color:"#b70000"}, <?php } ?>
+                         <?php if($total_calories_dinner != 0){ ?>{  y: <?php echo $total_calories_dinner; ?>, name: "Dinner",color:"#7bc917"} <?php } ?>
                     ]
                     
                 }
@@ -663,7 +747,7 @@ if($remain_satufat > 0)
                     backgroundColor: "transparent",
                     type: "pie",
                     colorSet:  "customColorSet1",
-                    indexLabelFontSize: 20,
+                    indexLabelFontSize: 14,
                     indexLabelFontWeight: "bold",
                     startAngle:0,
                     indexLabelFontColor: "MistyRose",       
@@ -673,9 +757,9 @@ if($remain_satufat > 0)
                     showInLegend: false,
                     indexLabel: "#percent%", 
                     dataPoints: [
-                        {  y: <?php echo $caloties_from_carb; ?>, name: "Carbohydrates",color:"#0067b5", indexLabel: "Carbohydrates"},
-                        {  y: <?php echo $caloties_from_protein; ?>, name: "Protein",color:"#413f41", indexLabel: "Protein"},
-                        {  y: <?php echo $caloties_from_fat; ?>, name: "Fats",color:"#7bc917", indexLabel: "Fats"}
+                        {  y: <?php echo $caloties_from_carb; ?>, name: "Carbs",color:"#0067b5"},
+                        {  y: <?php echo $caloties_from_protein; ?>, name: "Protein",color:"#b70000"},
+                        {  y: <?php echo $caloties_from_fat; ?>, name: "Fats",color:"#7bc917"}
                         
                     ]
                 }
@@ -689,20 +773,20 @@ if($remain_satufat > 0)
                 data: [
                 {        
                     type: "pie",    
-                    indexLabelFontSize: 20,
+                    indexLabelFontSize: 14,
                     indexLabelFontWeight: "bold",
                     colorSet: "greenShades",
                     startAngle:0,
                     indexLabelFontColor: "MistyRose",       
                     indexLabelLineColor: "darkgrey", 
                     indexLabelPlacement: "inside", 
-                    toolTipContent: "{name}: {y}hrs",
+                    toolTipContent: "{name}: {y}g",
                     showInLegend: false,
                     indexLabel: "#percent%", 
                     dataPoints: [
-                        {  y: <?php echo $chart_carb; ?>, name: "Carbohydrates",color:"#0067b5", indexLabel: "Carbohydrates"},
-                        {  y: <?php echo $chart_protein; ?>, name: "Protein",color:"#413f41", indexLabel: "Protein"},
-                        {  y: <?php echo $chart_fat; ?>, name: "Fats",color:"#7bc917", indexLabel: "Fats"}
+                        {  y: <?php echo $chart_carb; ?>, name: "Carbs",color:"#0067b5",},
+                        {  y: <?php echo $chart_protein; ?>, name: "Protein",color:"#b70000",},
+                        {  y: <?php echo $chart_fat; ?>, name: "Fats",color:"#7bc917"}
                     ]
                 }
                 ]

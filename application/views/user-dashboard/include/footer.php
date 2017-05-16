@@ -22,6 +22,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/additional-methods.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="<?php echo base_url('theme/admin-theme/js/custom.js'); ?>"></script>
+<script>
+    $(document).ready(function(){
+            $('body').on('click', function (e) {
+                $('[data-toggle="popover"]').each(function () {
+                    if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                        $(this).popover('hide');
+                    }
+                });
+            });
+            $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="popover"]').popover(); 
+    });
+</script>
 </body>
 
 </html>

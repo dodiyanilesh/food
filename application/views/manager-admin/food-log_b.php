@@ -1,8 +1,6 @@
 <?php 
     $user_id = $this->uri->segment(4);
 ?>
-<input type="hidden" id="log_date" value="<?php echo date('d-m-Y'); ?>" />
-<input type="hidden" id="user_id" value="<?php echo $user_id; ?>" />
 <style type="text/css">
     .foods-dropdown-menu {
     background-clip: padding-box;
@@ -143,27 +141,23 @@
                                     <li class="list-group-item">
                                         <div class="meal-info">
                                             <span class="badge-calorie"><i class="fa fa-info-circle"></i> 0 </span>
-                                            <span id="breakfast_eye">
                                             <?php 
                                             if(check_food_insert($user_id, 'Breakfast',time()) == TRUE){ ?>
                                             <a href="<?php echo base_url('manager-admin/instant_report/breakfast/'.$user_id.'/'.date('d-m-Y')); ?>"><span><i class="fa fa-eye"></i></span></a>
                                             <?php } ?>
-                                            </span>
                                         </div>
-                                        <span class="heading">BREAKFAST <i class="fa fa-plus-circle" data-target="#modal-review-food" data-toggle="modal"></i></span>
+                                        <span class="heading">BREAKFAST <i class="fa fa-plus-circle" data-target="#nutrition-modal" data-toggle="modal"></i></span>
                                     </li>
                                 </ul>
                                 <ul class="list-group list-group-items">
                                     <li class="list-group-item">
                                         <div class="meal-info">
                                             <span class="badge-calorie"><i class="fa fa-info-circle"></i> 0</span>
-                                            <span id="lunch_eye">
                                             <?php if(check_food_insert($user_id, 'Lunch',time()) == TRUE){ ?>
                                             <a href="<?php echo base_url('manager-admin/instant_report/lunch/'.$user_id.'/'.date('d-m-Y')); ?>"><span><i class="fa fa-eye"></i></span></a>
                                             <?php } ?>
-                                            </span>
                                         </div>
-                                        <span class="heading">LUNCH <i class="fa fa-plus-circle" data-target="#modal-review-food" data-toggle="modal"></i></span>
+                                        <span class="heading">LUNCH <i class="fa fa-plus-circle" data-target="#nutrition-modal" data-toggle="modal"></i></span>
                                     </li>
                                 </ul>
                                 <div class="foods-item-type-dinner">
@@ -171,50 +165,42 @@
                                         <li class="list-group-item">
                                             <div class="meal-info">
                                                 <span class="badge-calorie"><i class="fa fa-info-circle"></i> 0</span>
-                                                <span id="dinner_eye">
                                                 <?php if(check_food_insert($user_id, 'Dinner',time()) == TRUE){ ?>
                                                 <a href="<?php echo base_url('manager-admin/instant_report/dinner/'.$user_id.'/'.date('d-m-Y')); ?>"><span><i class="fa fa-eye"></i></span></a>
                                                 <?php } ?>
-                                                </span>
                                             </div>
-                                            <span class="heading">DINNER <i class="fa fa-plus-circle" data-target="#modal-review-food" data-toggle="modal"></i></span>
+                                            <span class="heading">DINNER <i class="fa fa-plus-circle" data-target="#nutrition-modal" data-toggle="modal"></i></span>
                                         </li>
                                     </ul>
                                 </div>
                                 <ul class="list-group list-group-items">
                                     <li class="list-group-item" >
                                         <div class="meal-info">
-                                            <span id="amsnack_eye">
                                             <?php if(check_food_insert($user_id, 'Morning Snacks',time()) == TRUE){ ?>
                                             <a href="<?php echo base_url('manager-admin/instant_report/amsnack/'.$user_id.'/'.date('d-m-Y')); ?>"><span><i class="fa fa-eye"></i></span></a>
                                             <?php } ?>
-                                            </span>
                                         </div>
-                                        <span class="heading">Morning Snacks <i class="fa fa-plus-circle" data-target="#modal-review-food" data-toggle="modal"></i></span>
+                                        <span class="heading">Morning Snacks <i class="fa fa-plus-circle" data-target="#nutrition-modal" data-toggle="modal"></i></span>
                                     </li>
                                 </ul>
                                 <ul class="list-group list-group-items">
                                     <li class="list-group-item">
                                         <div class="meal-info">
-                                            <span id="pmsnack_eye">
                                             <?php if(check_food_insert($user_id, 'Afternoon Snacks',time()) == TRUE){ ?>
                                             <a href="<?php echo base_url('manager-admin/instant_report/pmsnack/'.$user_id.'/'.date('d-m-Y')); ?>"><span><i class="fa fa-eye"></i></span></a>
                                             <?php } ?>
-                                            </span>
                                         </div>
-                                        <span class="heading">Afternoon Snacks <i class="fa fa-plus-circle" data-target="#modal-review-food" data-toggle="modal"></i></span>
+                                        <span class="heading">Afternoon Snacks <i class="fa fa-plus-circle" data-target="#nutrition-modal" data-toggle="modal"></i></span>
                                     </li>
                                 </ul>
                                 <ul class="list-group list-group-items">
                                     <li class="list-group-item">
                                         <div class="meal-info">
-                                            <span id="addsnack_eye">
                                             <?php if(check_food_insert($user_id, 'Additional Snacks',time()) == TRUE){ ?>
                                             <a href="<?php echo base_url('manager-admin/instant_report/addsnack/'.$user_id.'/'.date('d-m-Y')); ?>"><span><i class="fa fa-eye"></i></span></a>
                                             <?php } ?>
-                                            </span>
                                         </div>
-                                        <span class="heading">Additional Snacks <i class="fa fa-plus-circle" data-target="#modal-review-food" data-toggle="modal"></i></span>
+                                        <span class="heading">Additional Snacks <i class="fa fa-plus-circle" data-target="#nutrition-modal" data-toggle="modal"></i></span>
                                     </li>
                                 </ul>
                                 
@@ -496,8 +482,6 @@
                                     <input type="hidden" name="totalpost_calcium" id="totalpost_calcium" value="">
                                     <input type="hidden" name="totalpost_iron" id="totalpost_iron" value="">
                                     <input type="hidden" name="totalpost_trans_fatty_acid" id="totalpost_trans_fatty_acid" value="">
-
-                                    <input type="hidden" name="totalpost_vitamin_b" id="totalpost_vitamin_b" value="">
 
 
 

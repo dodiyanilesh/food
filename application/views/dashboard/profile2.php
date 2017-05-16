@@ -28,7 +28,13 @@
       <option value="Lightly Active" <?php if($profile->how_active == 'Lightly Active'){ echo 'selected="selected"'; } ?>>Lightly Active</option>
       <option value="Active" <?php if($profile->how_active == 'Active'){ echo 'selected="selected"'; } ?>>Active</option>
       <option value="Very Active" <?php if($profile->how_active == 'Very Active'){ echo 'selected="selected"'; } ?>>Very Active</option>
-    </select><a href="Javascript:void(0);" data-toggle="tooltip" title="This is Tooltip" class="info-tip"><i class="fa fa-question" aria-hidden="true"></i></a>
+    </select><a href="Javascript:void(0);" data-html="true" data-placement="right" data-toggle="popover" data-content="Sedentary: No vigorous activity, no exercise, no physical training.<br/><br/>
+
+Lightly Active: You walk for at least 30 minutes a day as exercise OR You train vigorously but for less than 15 minutes a day on average OR You jog daily but for less than 20 mins on average OR you train vigorously less than 3 times a week. Use this category if your daily occupation involves a lot of walking or running.<br/><br/>
+
+Active: Daily exercise equivalent to 1.5 hours of walking a day, OR Jogging for 50 minutes a day, OR you train vigorously 3-5 times a week ( at the gym, bootcamp, intense sports etc)<br/><br/>
+
+Very Active: Daily vigorous training such as cardio for over 1 hour OR gym training more than 6 times a week, OR intense sports that require a lot of physical effort. " class="info-tip"><i class="fa fa-question" aria-hidden="true"></i></a>
 	 </div>
         
 	<div class="col-lg-12 fat">
@@ -60,7 +66,7 @@
 	 </div>
          <div class="col-lg-4 are-die">
 	 <div class="form-inline">
-         <p>Are you Gluten ? </p>
+         <p>Are you Gluten Intolerant? </p>
             <input type="radio" class="g-radio-b" name="gluten" value="Yes" <?php if($profile->gluten == 'Yes'){ echo 'checked="checked"'; } ?> /> <span>Yes</span>
           <input type="radio" class="g-radio-b"  name="gluten" value="No" <?php if($profile->gluten == 'No'){ echo 'checked="checked"'; } ?> /> <span>No</span>
   	</div>
@@ -92,7 +98,7 @@
   <option value="3 units" <?php if($profile->alcohol == '3 units'){ echo 'selected="selected"'; } ?>>3 units</option>
   <option value="4 units" <?php if($profile->alcohol == '4 units'){ echo 'selected="selected"'; } ?>>4 units</option>
   <option value="5 units" <?php if($profile->alcohol == '5 units'){ echo 'selected="selected"'; } ?>>5 units</option>
-    </select><a href="Javascript:void(0);" data-toggle="tooltip" title="This is Tooltip" class="info-tip"><i class="fa fa-question" aria-hidden="true"></i></a>
+    </select><a href="Javascript:void(0);" data-html="true" data-placement="right" data-toggle="popover" data-content="1 unit is equivalent to a single measure of spirits (ABV 37.5%); <br/> OR half a pint of average-strength (4%) beer;<br/> OR two-thirds of a 125ml glass of average-strength (12%) wine." class="info-tip"><i class="fa fa-question" aria-hidden="true"></i></a>
 	 </div>
 	 
 	 <!---dieb----->

@@ -165,7 +165,7 @@ class Telr extends CI_Controller {
         //echo 'Your Payment is Successful';
     }
     
-    public function calcel()
+    public function cancel()
     {
         echo 'cancel by you';
     }

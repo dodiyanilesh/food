@@ -81,9 +81,18 @@
                     <li>
                         <a href="<?php echo base_url('analysts_profile'); ?>" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>My Profile</a>
                     </li>
+                    <?php 
+                       /* $user_id = $this->session->userdata('user_id');
+                        $current_date = date('Y-m-d H:i:s');
+                        $membership = check_membership($user_id);
+                        if($membership != FALSE && $membership->status == 'Authorised' && $membership->membership_expired < $current_date){*/
+                    ?>
                     <li>
                         <a href="<?php echo base_url('membership'); ?>" class="waves-effect"><i class="fa fa-user-secret fa-fw" aria-hidden="true"></i>Membership</a>
                     </li>
+                    <?php 
+                        //}
+                    ?>
                     <!--
                     <li>
                         <a href="fontawesome.html" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>Icons</a>

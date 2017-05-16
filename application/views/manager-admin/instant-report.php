@@ -1,4 +1,5 @@
 <?php 
+    $current_url = base_url(uri_string());
     if($food_first != FALSE){
         $total_protien = 0;
         $total_carbs = 0;
@@ -204,9 +205,9 @@ $percent_daily_value = $bmr*$active_level;
                             <div class="clearfix"></div>
                         </div>
                         <div class="list-instant">
-                            <div class="col-sm-5 big-font">Sodium <span class="small-list"><?php echo $total_sodium; ?>g</span></div>
+                            <div class="col-sm-5 big-font">Sodium <span class="small-list"><?php echo $total_sodium; ?>mg</span></div>
                             <div class="col-sm-4"><?php echo $percentage_sodium; ?>%</div>
-                            <div class="col-sm-3"><?php echo $sodium_balance_today; ?><?php if($sodium_balance_today != 'Over your limit'){ echo 'g';} ?></div>
+                            <div class="col-sm-3"><?php echo $sodium_balance_today; ?><?php if($sodium_balance_today != 'Over your limit'){ echo 'mg';} ?></div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="list-instant">
@@ -244,20 +245,20 @@ $percent_daily_value = $bmr*$active_level;
                         <div class="col-sm-6">
                             <div class="instant-instru">
                                 <div class="col-sm-12">
-                                    <div class="blue-box-in"><div class="stocked1"></div> <label>Protein <?php echo $caloties_from_protein; ?>g</label></div>
+                                    <div class="blue-box-in"><div class="stocked1"></div> <label>Protein <?php echo $caloties_from_protein; ?> Calories </label></div>
                                 </div>
                                 <div class="col-sm-12">
-                                    <div class="blue-box-in"><div class="stocked3"></div> <label>Carbohydrates <?php echo $caloties_from_carb; ?>g</label></div>
+                                    <div class="blue-box-in"><div class="stocked3"></div> <label>Carbs <?php echo $caloties_from_carb; ?> Calories </label></div>
                                 </div>
                                 <div class="col-sm-12">
-                                    <div class="blue-box-in"><div class="stocked2"></div> <label>Fats <?php echo $caloties_from_fat; ?>g</label></div>
+                                    <div class="blue-box-in"><div class="stocked2"></div> <label>Fats <?php echo $caloties_from_fat; ?> Calories </label></div>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="clearfix"></div>
                         <div class="fb-button text-center">
-                            <img src="<?php echo base_url('theme/images/share-fb.png'); ?>" width="250" />
+                            <a href="https://www.facebook.com/sharer.php?u=<?php echo $current_url; ?>" target="_blank"><img src="<?php echo base_url('theme/images/share-fb.png'); ?>" width="250" /></a>
                         </div>
                     </div>
                 </div>
@@ -322,7 +323,7 @@ $percent_daily_value = $bmr*$active_level;
                     backgroundColor: "transparent",
                     type: "pie",
                     colorSet:  "customColorSet1",
-                    indexLabelFontSize: 20,
+                    indexLabelFontSize: 10,
                     indexLabelFontWeight: "bold",
                     startAngle:0,
                     indexLabelFontColor: "MistyRose",       
@@ -332,9 +333,9 @@ $percent_daily_value = $bmr*$active_level;
                     showInLegend: false,
                     indexLabel: "#percent%", 
                     dataPoints: [
-                        {  y: <?php echo $caloties_from_carb; ?>, name: "Carbohydrates"},
-                        {  y: <?php echo $caloties_from_protein; ?>, name: "Protein"},
-                        {  y: <?php echo $caloties_from_fat; ?>, name: "Fats"}
+                        {  y: <?php echo $caloties_from_carb; ?>, name: "Carbs", indexLabel: "Carbs"},
+                        {  y: <?php echo $caloties_from_protein; ?>, name: "Protein", indexLabel: "Protein"},
+                        {  y: <?php echo $caloties_from_fat; ?>, name: "Fats", indexLabel: "Fats"}
                     ]
                 }
                 ]

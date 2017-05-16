@@ -62,3 +62,16 @@
             return FALSE;
         }
     }
+
+    function get_country_row_on_code($code){
+        $ci =& get_instance();
+        $code = substr($code, 1);
+        $ci->db->where('phonecode', $code);
+        $query = $ci->db->get('country_code');
+        if($query->num_rows() > 0)
+        {
+            return $query->row();
+        }else{
+            return FALSE;
+        }
+    }

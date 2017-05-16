@@ -1978,3 +1978,9 @@ body.other-page .container {
 .simple-overlay{ display:block;}
 
 }
+
+.tooltip {
+    width: 500px !important;
+    max-width: 500px !important;
+}
+.popover-content{ width: 500px !important; max-width: 500px !important;}
